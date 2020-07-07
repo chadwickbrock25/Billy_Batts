@@ -7,5 +7,18 @@
 </head>
 <body>
     <h1>Edit Item</h1>
+    <form action="/merch/<%= merch.id %>?_method=PUT" method="POST">
+        Name: <input type="text" name="name" value="<%= merch.name  %> " /><br/>
+        Image: <input type="text" name="image" value="<%= merch.image  %> " />
+        Price: <input type="number" name="price" value="<%= merch.price  %> "/>
+        Quanity: <input type="number" name="quanity" value="<%= merch.quanity %> "/>
+        <br/>
+        In Stock: <input type="checkbox" name="inStock" <% if(merch.inStock === true) { %>
+            checked
+        <% } %>/>
+        Description: <input type="text" name="description" value="<%= merch.description  %> "/>
+        <br/>
+        <input type="submit" name="" value="Edit Item"/>
+    </form>
 </body>
 </html>
