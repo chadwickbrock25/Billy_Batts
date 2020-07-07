@@ -20,6 +20,7 @@ mongoose.connection.once('open', ()=> {
 // importing the merch model
 const Merch = require('./models/merch.js')
 
+
 const MerchController = require('./controllers/routes.js')
 app.use('/merch', MerchController)
 

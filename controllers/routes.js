@@ -33,6 +33,40 @@ router.post('/', (req, res)=>{
   })
 })
 
+//seed
+router.get('/seed', (req, res)=>{
+    Merch.remove(() => {
+        Merch.create([
+            {
+                name:'sticker',
+                image:'/images/sticker.jpg',
+                price: 6,
+                quanity: 6,
+                inStock:true,
+                description: 'its a sticker',
+            },
+            {
+                name:'Russ CD',
+                image:'/images/russ_cd.jpeg',
+                price: 6,
+                quanity: 6,
+                inStock:true,
+                description: 'its our first album',
+            },
+            {
+                name: 'shirt',
+                image: '/images/shirt.jpg',
+                price: 6,
+                quanity: 6,
+                inStock:true,
+                description: 'its a shirt',
+            }
+        ], (err, data)=>{
+            res.redirect('/merch');
+        });
+    });
+});
+
 // edit
 router.get('/:id/edit', (req, res)=>{
   Merch.findById(req.params.id, (err, foundMerch)=>{ //find the merch
@@ -69,5 +103,7 @@ router.delete('/:id', (req, res) => {
     res.redirect('/merch') //redirect back to merch index
   })
 })
+
+
 
 module.exports = router;
