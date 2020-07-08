@@ -5,7 +5,7 @@ const Merch = require('../models/merch.js');
 
 // ROUTES
 // index
-router.get('/',  (req, res)=>{
+router.get('/merch',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
     res.render('index.ejs', {
       merch: allMerch,
