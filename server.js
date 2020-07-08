@@ -1,21 +1,30 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const db = mongoose.connection;
 const methodOverride = require('method-override')
 require('dotenv').config();
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000;
 
 // middleware to help with the form submission
+app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
+app.use(express.json());
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/'+ `merches`;
 
 // mongoose connection logic
-mongoose.connect('mongodb://localhost:27017/merch', { useNewUrlParser: true, useUnifiedTopology: true } );
-mongoose.connection.once('open', ()=> {
-    console.log('connected to mongo');
-});
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
+
+// Error / success
+db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+db.on('disconnected', () => console.log('mongo disconnected'));
+
+// open the connection to mongo
+db.on('open' , ()=>{});
 
 // importing the merch model
 const Merch = require('./models/merch.js')
