@@ -29,6 +29,14 @@ db.on('open' , ()=>{});
 // importing the merch model
 const Merch = require('./models/merch.js')
 
+app.get('/',  (req, res)=>{
+  Merch.find({}, (error, allMerch)=>{
+    res.render('events.ejs', {
+      merch: allMerch,
+      
+    })
+  })
+})
 
 const MerchController = require('./controllers/routes.js')
 app.use('/merch', MerchController)

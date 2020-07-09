@@ -39,7 +39,7 @@ router.get('/seed', (req, res)=>{
         Merch.create([
             {
                 name:'sticker',
-                image:'public/images/sticker.jpg',
+                image:'images/sticker.jpg',
                 price: 6,
                 quanity: 6,
                 inStock:true,
@@ -47,7 +47,7 @@ router.get('/seed', (req, res)=>{
             },
             {
                 name:'Russ CD',
-                image:'public/images/russ_cd.jpeg',
+                image:'images/russ_cd.jpeg',
                 price: 6,
                 quanity: 6,
                 inStock:true,
@@ -55,7 +55,7 @@ router.get('/seed', (req, res)=>{
             },
             {
                 name: 'shirt',
-                image: 'public/images/shirt.jpg',
+                image: 'images/shirt.jpg',
                 price: 6,
                 quanity: 6,
                 inStock:true,
