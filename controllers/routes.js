@@ -9,15 +9,16 @@ router.get('/',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
     res.render('index.ejs', {
       merch: allMerch,
-      
+      tabTitle: 'Merchandise'
     })
   })
 })
 
+
 // new
 router.get('/new', (req, res) => {
   res.render('new.ejs', {
-    
+    tabTitle: 'New Item'
   });
 })
 
@@ -71,7 +72,8 @@ router.get('/seed', (req, res)=>{
 router.get('/:id/edit', (req, res)=>{
   Merch.findById(req.params.id, (err, foundMerch)=>{ //find the merch
       res.render('edit.ejs', {
-        merch: foundMerch, //pass in found merch details
+        merch: foundMerch,
+        tabTitle: 'Edit Item'
       })
   })
 })
@@ -92,7 +94,8 @@ router.put('/:id', (req, res)=>{
 router.get('/:id', (req, res) =>{
   Merch.findById(req.params.id, (err, foundMerch)=>{
     res.render('show.ejs', {
-      merch: foundMerch
+      merch: foundMerch,
+      tabTitle: foundMerch.name
     })
   })
 })

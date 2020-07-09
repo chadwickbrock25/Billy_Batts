@@ -19,26 +19,45 @@
             max-width: 250px;
         } 
     </style>
+
+    
     <title>Merch</title>
 </head>
-<nav> <img src='images/BillyBattsVector2.jpg' class="logo"><br/><div class="events"><a href="/">Events</a></div><div class="store"><a href="/merch">Store</a></div><div class="Media"><a href="/merch/media">Media</a></div></nav>
+<nav> 
+    <!-- Logo image -->
+    <img src='images/BillyBattsVector2.jpg' class="logo"><br/><div class="events">
+    <!-- Events link     -->
+    <a href="/">Events</a></div>
+    <!-- Store link     -->
+    <div class="store"><a href="/merch">Store</a></div>
+    <!-- Media link     -->
+    <div class="Media"><a href="/media">Media</a></div>
+</nav>
 <body>
     
     <h1>Merch</h1>
     <ul>
         <% for (const allMerch of merch) { %>
+            <!-- Edit button -->
             <a href="/merch/<%= allMerch.id %>/edit">Edit</a>
+            <!-- Item image -->
             <img src="<%= allMerch.image %>" class="item_img">
+            <!-- Link to show page -->
             <li><a href="/merch/<%= allMerch.id %>"><%= allMerch.name %></a></li>
+            <!-- Item price -->
             <h3>$<%= allMerch.price %></h3>
+            <!-- Item quanity -->
             Qty:<%= allMerch.quanity %>
-            <form action="/merch/<%= allMerch.id %>?_method=DELETE" method="POST">
+            <!-- Delete button -->
+            <form action="/merch/<%= allMerch.id %>
+                ?_method=DELETE" method="POST">
                 <input type="submit" value="DELETE"/>
             </form>
             
         <% } %>
     </ul>
+    <!-- New item link -->
     <a href="/merch/new">Create new item</a>
 </body>
-<footer>est.2019 contact representation </footer>
+<%- include ('./partials/foot.ejs')%>
 </html>

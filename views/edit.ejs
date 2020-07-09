@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Item</title>
-</head>
+    <%- include ('./partials/head.ejs')%>
 <body>
     <h1>Edit Item</h1>
     <form action="/merch/<%= merch.id %>?_method=PUT" method="POST">
@@ -21,4 +17,5 @@
         <input type="submit" name="" value="Edit Item"/>
     </form>
 </body>
+<%- include ('./partials/foot.ejs')%>
 </html>

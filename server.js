@@ -33,6 +33,16 @@ app.get('/',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
     res.render('events.ejs', {
       merch: allMerch,
+      tabTitle: 'Events',
+    })
+  })
+})
+
+app.get('/media',  (req, res)=>{
+  Merch.find({}, (error, allMerch)=>{
+    res.render('media.ejs', {
+      merch: allMerch,
+      tabTitle: 'Media',
       
     })
   })
