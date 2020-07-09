@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgba(16, 7, 26, 0.529);
+            text-align: center;
+
+        }
+        nav {
+            margin: auto;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .item_img {
+            max-width: 250px;
+        } 
+    </style>
     <title>Merch</title>
 </head>
-<nav> <img src='images/BillyBattsVector2.jpg'><br/>Events Store Media </nav>
+<nav> <img src='images/BillyBattsVector2.jpg' class="logo"><br/><div class="events"><a href="/">Events</a></div><div class="store"><a href="/merch">Store</a></div><div class="Media"><a href="/merch/media">Media</a></div></nav>
 <body>
     
     <h1>Merch</h1>
     <ul>
         <% for (const allMerch of merch) { %>
-            <img src="<%= allMerch.image %>">
+            <a href="/merch/<%= allMerch.id %>/edit">Edit</a>
+            <img src="<%= allMerch.image %>" class="item_img">
             <li><a href="/merch/<%= allMerch.id %>"><%= allMerch.name %></a></li>
-            <%= allMerch.price %>
-            <%= allMerch.quanity %>
-            <%= allMerch.description %>
+            <h3>$<%= allMerch.price %></h3>
+            Qty:<%= allMerch.quanity %>
             <form action="/merch/<%= allMerch.id %>?_method=DELETE" method="POST">
                 <input type="submit" value="DELETE"/>
             </form>
-            <a href="/merch/<%= allMerch.id %>/edit">Edit</a>
+            
         <% } %>
     </ul>
     <a href="/merch/new">Create new item</a>

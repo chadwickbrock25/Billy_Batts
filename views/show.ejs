@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .item_img {
+            max-width: 150px;
+        } body {
+            text-align: center;
+        }
+    </style>
     <title>One Item</title>
 </head>
 <body>
     <h1>One Item</h1>
-        <%= merch.image %>
-        <img src="/<%= merch.image %>">
-        <%= merch.price %>
-        <%= merch.quanity %>
-        <%= merch.description %>
+        <h2><%= merch.name %></h2>
+        <img src="/<%= merch.image %>" class="item_img">
+        <h3>$<%= merch.price %></h3>
+        Qty: <%= merch.quanity %>
+        <h4><%= merch.description %></h4>
 </body>
 </html>
