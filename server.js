@@ -1,19 +1,29 @@
 const express = require('express')
+const bcrypt = require('bcrypt')
 const app = express()
 const mongoose = require('mongoose')
 const db = mongoose.connection;
 const methodOverride = require('method-override')
 require('dotenv').config();
+const session = require('express-session')
 
 const PORT = process.env.PORT || 3000;
-
+const dbName = process.env.dbName
 // middleware to help with the form submission
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 app.use(express.json());
+app.use(session
+  ({
+    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+  })
+)
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/'+ `merches`;
+
+const MONGODB_URI = process.env.MONGODB_URI 
 
 // mongoose connection logic
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
@@ -31,6 +41,8 @@ const Merch = require('./models/merch.js')
 
 app.get('/',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
+    req.session.admin = 'admin'
+    console.log(req.session)
     res.render('events.ejs', {
       merch: allMerch,
       tabTitle: 'Events',
@@ -39,6 +51,7 @@ app.get('/',  (req, res)=>{
 })
 
 app.get('/media',  (req, res)=>{
+  console.log(req.session)
   Merch.find({}, (error, allMerch)=>{
     res.render('media.ejs', {
       merch: allMerch,
@@ -50,6 +63,9 @@ app.get('/media',  (req, res)=>{
 
 const MerchController = require('./controllers/routes.js')
 app.use('/merch', MerchController)
+
+const userController = require('./controllers/users.js');
+app.use('/users', userController)
 
 // the app running the server
 app.listen(PORT, () => {
