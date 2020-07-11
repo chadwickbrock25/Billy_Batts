@@ -41,12 +41,12 @@ router.get('/seed', (req, res)=>{
     Merch.remove(() => {
         Merch.create([
             {
-                name:'sticker',
+                name:'Stickers',
                 image:'images/sticker.jpg',
                 price: 6,
                 quanity: 6,
                 inStock:true,
-                description: 'its a sticker',
+                description: 'Stickers, Patches, & Buttons O MY',
             },
             {
                 name:'Russ CD',
@@ -54,15 +54,15 @@ router.get('/seed', (req, res)=>{
                 price: 6,
                 quanity: 6,
                 inStock:true,
-                description: 'its our first album',
+                description: 'The full length debut CD from Billy Batts & The Made Men.',
             },
             {
-                name: 'shirt',
+                name: 'Shovel T-shirt',
                 image: 'images/shirt.jpg',
                 price: 6,
                 quanity: 6,
                 inStock:true,
-                description: 'its a shirt',
+                description: 'Black Classic T-shirt ',
             }
         ], (err, data)=>{
             res.redirect('/merch');

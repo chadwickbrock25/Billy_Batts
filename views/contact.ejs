@@ -3,6 +3,13 @@
     <%- include ('./partials/head.ejs')%>
 <body>
     <h1>Contact</h1>
+    <form action="mailto:chadwick.brock25@gmail.com" method="POST">
+        Name: <input type="text" name="name" /><br/>
+        Subject: <input type="text" name="subject" />
+        Message: <input type="text" name="message" />
+        <br/>
+        <input type="submit" name="submit" value="Send Message"/>
+    </form>
 </body>
 <%- include ('./partials/foot.ejs')%>
 </html>

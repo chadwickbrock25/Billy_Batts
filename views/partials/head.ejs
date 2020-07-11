@@ -29,6 +29,14 @@
                 font-size: 25px;
                 margin: .5rem;
                 color: #b91118;
+        } h4 {
+                font-size: 25px;
+                margin: .5rem;
+                color: #b91118; 
+        } span {
+                margin-top: 5px;
+                font-size: 20px;
+                color: #b91118; 
         } nav {
             background-color: white;
         } button {
@@ -39,10 +47,18 @@
                 background-color: white;
                 color: #b91118;
         } .foot-contain {
-                margin-bottom: auto;
+                margin: 2rem;
         } .admin, .contact, .rep {
                 background-color:black;
                 color: white;
+        } form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        } .right {
+            margin-left: -2rem;
+        } .index-contain {
+            margin-left: -2rem;
         }
         @media(min-width: 425px) {
              .item_img {
@@ -50,7 +66,9 @@
             }  h2, h3 {
                 font-size: 25px;
                 margin: .5rem;
-            } 
+            } .foot-contain {
+                min-width: 20rem;
+            }
         }
         @media(min-width: 750px) {
             .item-contain {
@@ -75,6 +93,10 @@
                 max-width: 250px;
             } .events, .store, .media {
                 font-size: 25px;
+            }  form {
+                font-size: 25px;
+            } input {
+                font-size:25px;
             }
         }
     </style>
@@ -93,7 +115,7 @@
      <div class="media" id="button"><a href="/contact"><button>Contact</button></a></div>
     <ul class="right">
         <% if (currentUser) { %>
-        <li>Welcome <%= currentUser.username %></li>
+        <li>Admin Access: <%= currentUser.username %></li>
         <li>
           <form action="/sessions?_method=DELETE" method="POST">
             <input type="submit" value="Log Out" class="btn-small red" />
