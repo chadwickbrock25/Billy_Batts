@@ -2,8 +2,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        
         body {
-            background-color: rgba(16, 7, 26, 0.529);
+            background-color: rgba(16, 7, 26, 0.281);
             text-align: center;
 
         }
@@ -14,22 +15,82 @@
             max-width: 150px;
         }
         .item_img {
-            max-width: 150px;
-        } 
+            max-width: 250px;
+        } li {
+            list-style: none;
+        } .item-contain {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        } h1 {
+            color: #b91118;
+        } h2, h3 {
+                font-size: 25px;
+                margin: .5rem;
+                color: #b91118;
+        } nav {
+            background-color: white;
+        } button {
+                color: #b91118;
+                font-size:25px;
+                transition-duration: 0.4s;
+        } button:hover {
+                background-color: white;
+                color: #b91118;
+        } .foot-contain {
+                margin-bottom: auto;
+        } .admin, .contact, .rep {
+                background-color:black;
+                color: white;
+        }
+        @media(min-width: 425px) {
+             .item_img {
+                max-width: 500px;
+            }  h2, h3 {
+                font-size: 25px;
+                margin: .5rem;
+            } 
+        }
+        @media(min-width: 750px) {
+            .item-contain {
+                display: flex;
+                justify-content:space-around;
+            } .item_img {
+                max-width: 500px;
+            } 
+        }
+        @media(min-width: 800px) {
+            .item-contain {
+                display: inline-flex;
+                margin-left: 1rem;
+            } .item_img {
+                max-width: 500px;
+            } h1 {
+                font-size: 75px;
+            } h2, h3 {
+                font-size: 25px;
+                margin: .5rem;
+            } .logo {
+                max-width: 250px;
+            } .events, .store, .media {
+                font-size: 25px;
+            }
+        }
     </style>
 
     
     <title><%= tabTitle %></title>
 </head>
 <nav> 
-    <!-- Logo image -->
-    <img src='/images/BillyBattsVector2.jpg' class="logo"><br/><div class="events">
-    <!-- Events link     -->
-    <a href="/">Events</a></div>
-    <!-- Store link     -->
-    <div class="store"><a href="/merch">Store</a></div>
-    <!-- Media link     -->
-    <div class="Media"><a href="/media">Media</a></div>
+     <!-- Logo image -->
+     <img src='/images/BillyBattsVector2.jpg' class="logo"><br/>
+     <!-- Events link     -->
+     <div class="events" id="button"><a href="/"><button>Events</button></a></div>
+     <!-- Store link     -->
+     <div class="store" id="button"><a href="/merch"><button>Store</button></a></div>
+     <!-- Media link     -->
+     <div class="media" id="button"><a href="/contact"><button>Contact</button></a></div>
     <ul class="right">
         <% if (currentUser) { %>
         <li>Welcome <%= currentUser.username %></li>

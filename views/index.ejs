@@ -1,55 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: rgba(16, 7, 26, 0.529);
-            text-align: center;
-
-        }
-        nav {
-            margin: auto;
-        }
-        .logo {
-            max-width: 150px;
-        }
-        .item_img {
-            max-width: 250px;
-        } 
-    </style>
-
-    
-    <title>Merch</title>
-</head>
-<nav> 
-    <!-- Logo image -->
-    <img src='images/BillyBattsVector2.jpg' class="logo"><br/><div class="events">
-    <!-- Events link     -->
-    <a href="/">Events</a></div>
-    <!-- Store link     -->
-    <div class="store"><a href="/merch">Store</a></div>
-    <!-- Media link     -->
-    <div class="Media"><a href="/media">Media</a></div>
-    <ul class="right">
-        <% if (currentUser) { %>
-        <li>Welcome <%= currentUser.username %></li>
-        <li>
-          <form action="/sessions?_method=DELETE" method="POST">
-            <input type="submit" value="Log Out" class="btn-small red" />
-          </form>
-        </li>
-        <li><a href="/users/new">New Admin</a></li>
-        <% } %>
-      </ul>
-</nav>
+    <%- include ('./partials/head.ejs')%>
 <body>
-    
     <h1>Merch</h1>
     <ul>
         <% for (const allMerch of merch) { %>
-            <% if (currentUser) { %>
+        <% if (currentUser) { %>
               <!-- Edit button -->
             <a href="/merch/<%= allMerch.id %>/edit">Edit</a>
             <!-- Item image -->
@@ -59,30 +15,28 @@
             <!-- Item price -->
             <h3>$<%= allMerch.price %></h3>
             <!-- Item quanity -->
-            Qty:<%= allMerch.quanity %>
+            <h4>Qty:<%= allMerch.quanity %></h4>
             <!-- Delete button -->
             <form action="/merch/<%= allMerch.id%>?_method=DELETE" method="POST">
                 <input type="submit" value="DELETE"/>
             </form>
-                <% } else { %>
-                <!-- Edit button -->
-            <!-- Item image -->
-            <img src="<%= allMerch.image %>" class="item_img">
-            <!-- Link to show page -->
-            <li><a href="/merch/<%= allMerch.id %>"><%= allMerch.name %></a></li>
-            <!-- Item price -->
-            <h3>$<%= allMerch.price %></h3>
-            <!-- Item quanity -->
-            Qty:<%= allMerch.quanity %>
-                <% } %>
-            
+        <% } else { %>
+            <div class="item-contain">
+                <!-- Item image -->
+                <img src="<%= allMerch.image %>" class="item_img">
+                <!-- Link to show page -->
+                <li><a href="/merch/<%= allMerch.id %>"><h2><%= allMerch.name %></h2></a></li>
+                <!-- Item price -->
+                <h3>$<%= allMerch.price %></h3>
+                    <% } %>
+            </div>
             
         <% } %>
     </ul>
     <% if (currentUser) { %>
         <!-- New item link -->
-    <a href="/merch/new">Create new item</a>
-          <% } %>
+        <a href="/merch/new">Create new item</a>
+    <% } %>
 </body>
-<%- include ('./partials/foot.ejs')%>
+    <%- include ('./partials/foot.ejs')%>
 </html>

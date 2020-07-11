@@ -2,11 +2,12 @@
 <html lang="en">
 <%- include ('./partials/head.ejs')%>
 <body>
-    <h1>One Item</h1>
-        <h2><%= merch.name %></h2>
+    <h1><%= merch.name %></h1>
         <img src="/<%= merch.image %>" class="item_img">
         <h3>$<%= merch.price %></h3>
-        Qty: <%= merch.quanity %>
+        <% if (currentUser) { %>
+        <h4>Qty: <%= merch.quanity %></h4>
+        <% } %>
         <h4><%= merch.description %></h4>
 </body>
 <%- include ('./partials/foot.ejs')%>

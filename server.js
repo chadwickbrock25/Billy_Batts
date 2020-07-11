@@ -51,12 +51,12 @@ app.get('/',  (req, res)=>{
   })
 })
 
-app.get('/media',  (req, res)=>{
+app.get('/contact',  (req, res)=>{
   console.log(req.session)
   Merch.find({}, (error, allMerch)=>{
-    res.render('media.ejs', {
+    res.render('contact.ejs', {
       merch: allMerch,
-      tabTitle: 'Media',
+      tabTitle: 'contact',
       currentUser: req.session.currentUser,
       
     })
