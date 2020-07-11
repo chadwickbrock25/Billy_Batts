@@ -30,4 +30,15 @@
     <div class="store"><a href="/merch">Store</a></div>
     <!-- Media link     -->
     <div class="Media"><a href="/media">Media</a></div>
+    <ul class="right">
+        <% if (currentUser) { %>
+        <li>Welcome <%= currentUser.username %></li>
+        <li>
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input type="submit" value="Log Out" class="btn-small red" />
+          </form>
+        </li>
+        <li><a href="/users/new">New Admin</a></li>
+        <% } %>
+      </ul>
 </nav>

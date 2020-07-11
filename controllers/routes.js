@@ -9,7 +9,8 @@ router.get('/',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
     res.render('index.ejs', {
       merch: allMerch,
-      tabTitle: 'Merchandise'
+      tabTitle: 'Merchandise',
+      currentUser: req.session.currentUser,
     })
   })
 })
@@ -18,7 +19,8 @@ router.get('/',  (req, res)=>{
 // new
 router.get('/new', (req, res) => {
   res.render('new.ejs', {
-    tabTitle: 'New Item'
+    tabTitle: 'New Item',
+    currentUser: req.session.currentUser,
   });
 })
 
@@ -73,7 +75,8 @@ router.get('/:id/edit', (req, res)=>{
   Merch.findById(req.params.id, (err, foundMerch)=>{ //find the merch
       res.render('edit.ejs', {
         merch: foundMerch,
-        tabTitle: 'Edit Item'
+        tabTitle: 'Edit Item',
+        currentUser: req.session.currentUser,
       })
   })
 })
@@ -95,14 +98,18 @@ router.get('/:id', (req, res) =>{
   Merch.findById(req.params.id, (err, foundMerch)=>{
     res.render('show.ejs', {
       merch: foundMerch,
-      tabTitle: foundMerch.name
+      tabTitle: foundMerch.name,
+      currentUser: req.session.currentUser,
     })
   })
 })
 
 // delete
 router.delete('/:id', (req, res) => {
-  Merch.findByIdAndRemove(req.params.id, { useFindAndModify: false }, (err, data)=>{
+  console.log("1")
+  Merch.findByIdAndRemove(req.params.id, { 
+  useFindAndModify: false }, (err, data)=>{
+    console.log("2")
     res.redirect('/merch') //redirect back to merch index
   })
 })

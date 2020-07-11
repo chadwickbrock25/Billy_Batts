@@ -46,6 +46,7 @@ app.get('/',  (req, res)=>{
     res.render('events.ejs', {
       merch: allMerch,
       tabTitle: 'Events',
+      currentUser: req.session.currentUser,
     })
   })
 })
@@ -56,6 +57,7 @@ app.get('/media',  (req, res)=>{
     res.render('media.ejs', {
       merch: allMerch,
       tabTitle: 'Media',
+      currentUser: req.session.currentUser,
       
     })
   })
@@ -66,6 +68,9 @@ app.use('/merch', MerchController)
 
 const userController = require('./controllers/users.js');
 app.use('/users', userController)
+
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController)
 
 // the app running the server
 app.listen(PORT, () => {

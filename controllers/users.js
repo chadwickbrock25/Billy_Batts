@@ -5,8 +5,10 @@ const bcrypt = require('bcrypt');
 const User = require('../models/users.js')
 
 userRouter.get('/new', (req, res) => {
-    res.render('users/new.ejs')
-})
+    res.render('users/new.ejs', {
+        currentUser: req.session.currentUser,
+    });
+});
 
 userRouter.post('/', (req, res) => {
     //hash password before database

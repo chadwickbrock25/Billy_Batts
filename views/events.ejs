@@ -22,6 +22,17 @@
     <title>Events</title>
 </head>
 <nav> <img src='images/BillyBattsVector2.jpg' class="logo"><br/><div class="events"><a href="/">Events</a></div><div class="store"><a href="/merch">Store</a></div><div class="media"><a href="/media">Media</a></div></nav>
+<ul class="right">
+    <% if (currentUser) { %>
+    <li>Welcome <%= currentUser.username %></li>
+    <li>
+      <form action="/sessions?_method=DELETE" method="POST">
+        <input type="submit" value="Log Out" class="btn-small red" />
+      </form>
+    </li>
+    <li><a href="/users/new">New Admin</a></li>
+    <% } %>
+  </ul>
 <body>
     <div class="sign-in">
         
