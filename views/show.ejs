@@ -6,10 +6,18 @@
         <h1><%= merch.name %></h1>
         <img src="/<%= merch.image %>" class="item_img">
         <h3>$<%= merch.price %></h3>
+        
+        
+        <% if(merch.quanity === 0) {%>
         <form action="/merch/<%= merch.id %>/buy?_method=PUT" method="POST">
-            <% if(merch.quanity < 1) { btn.disabled = true;} %>
+            <input type="submit" value="BUY" hidden/>
+        </form>
+        <h4>SOLD OUT</h4>
+    <% } else { %>
+        <form action="/merch/<%= merch.id %>/buy?_method=PUT" method="POST">
             <input type="submit" value="BUY"/>
-            </form>
+        </form>
+    <% } %>
         <span><%= merch.description %></span>
         <% if (currentUser) { %>
         <h5>Qty: <%= merch.quanity %></h5>
@@ -18,7 +26,4 @@
     </div>
 </body>
 <%- include ('./partials/foot.ejs')%>
-<script> 
-let btn = document.getElementById('submit');
-</script>
 </html>
