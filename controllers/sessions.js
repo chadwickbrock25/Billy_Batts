@@ -4,7 +4,9 @@ const User = require('../models/users');
 const sessionsRouter = express.Router()
 
 sessionsRouter.get('/new', (req, res) => {
-    res.render('sessions/new.ejs');
+    res.render('sessions/new.ejs', {
+        tabTitle: "Admin log in"
+    });
 });
 
 sessionsRouter.post('/',  (req, res) => {

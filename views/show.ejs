@@ -7,6 +7,7 @@
         <img src="/<%= merch.image %>" class="item_img">
         <h3>$<%= merch.price %></h3>
         <form action="/merch/<%= merch.id %>/buy?_method=PUT" method="POST">
+            <% if(merch.quanity < 1) { btn.disabled = true;} %>
             <input type="submit" value="BUY"/>
             </form>
         <span><%= merch.description %></span>
@@ -17,4 +18,7 @@
     </div>
 </body>
 <%- include ('./partials/foot.ejs')%>
+<script> 
+let btn = document.getElementById('submit');
+</script>
 </html>
