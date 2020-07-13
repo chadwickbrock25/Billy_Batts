@@ -106,14 +106,20 @@ router.get('/:id', (req, res) =>{
 
 // delete
 router.delete('/:id', (req, res) => {
-  console.log("1")
   Merch.findByIdAndRemove(req.params.id, { 
   useFindAndModify: false }, (err, data)=>{
-    console.log("2")
     res.redirect('/merch') //redirect back to merch index
   })
 })
 
+//buy
+router.put('/:id/buy', (req, res) => {
+  // console.log(merch.name)
+    Merch.findByIdAndUpdate(req.params.id, 
+      {$inc: {quanity: -1}}, (err, oneItem) => {
+          res.redirect(`/merch/${req.params.id}`)
+      });
+});
 
 
 module.exports = router;
