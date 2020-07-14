@@ -5,7 +5,8 @@ const sessionsRouter = express.Router()
 
 sessionsRouter.get('/new', (req, res) => {
     res.render('sessions/new.ejs', {
-        tabTitle: "Admin log in"
+        tabTitle: "Admin log in",
+        currentUser: req.session.currentUser,
     });
 });
 
@@ -16,15 +17,15 @@ sessionsRouter.post('/',  (req, res) => {
           console.log(err)
           res.send('oops the db had a problem')
         } else if (!foundUser) {
-          // if found user is undefined/null not found etc
+          // if found user is undefined,null, not found
           res.send('<a  href="/sessions/new">Sorry, no user found </a>')
         } else {
-          // user is found yay!
-          // now let's check if passwords match
+          // user is found
+          // check if passwords match
           if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-            // add the user to our session
+            // add user to session
             req.session.currentUser = foundUser
-            // redirect back to our home page
+            // redirect back to merch page
             res.redirect('/merch')
           } else {
             // passwords do not match

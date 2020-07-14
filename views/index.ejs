@@ -23,10 +23,12 @@
             </form>
         <% } else { %>
             <div class="item-contain">
+                <!-- Link to show page -->
+                <a href="/merch/<%= allMerch.id %>">
                 <!-- Item image -->
                 <img src="<%= allMerch.image %>" class="item_img">
-                <!-- Link to show page -->
-                <li><a href="/merch/<%= allMerch.id %>"><h2><%= allMerch.name %></h2></a></li>
+                <!-- Item name -->
+                <li><h2><%= allMerch.name %></h2></a></li>
                 <!-- Item price -->
                 <h3>$<%= allMerch.price %></h3>
                     <% } %>

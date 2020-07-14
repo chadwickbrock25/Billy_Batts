@@ -6,9 +6,9 @@ const db = mongoose.connection;
 const methodOverride = require('method-override')
 require('dotenv').config();
 const session = require('express-session')
-
 const PORT = process.env.PORT || 3000;
 const dbName = process.env.dbName
+
 // middleware to help with the form submission
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
@@ -16,9 +16,9 @@ app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(session
   ({
-    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
-    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    secret: process.env.SECRET, 
+    resave: false, 
+    saveUninitialized: false 
   })
 )
 
@@ -56,13 +56,14 @@ app.get('/contact',  (req, res)=>{
   Merch.find({}, (error, allMerch)=>{
     res.render('contact.ejs', {
       merch: allMerch,
-      tabTitle: 'contact',
+      tabTitle: 'Contact',
       currentUser: req.session.currentUser,
       
     })
   })
 })
 
+//CONTROLLERS
 const MerchController = require('./controllers/routes.js')
 app.use('/merch', MerchController)
 

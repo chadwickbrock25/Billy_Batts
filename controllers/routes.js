@@ -40,10 +40,19 @@ router.post('/', (req, res)=>{
 router.get('/seed', (req, res)=>{
     Merch.remove(() => {
         Merch.create([
+              {
+                name:'Spirit of DIY vol. 2 2020',
+                image:'images/spirit1.jpeg',
+                price: 10,
+                quanity: 6,
+                inStock:true,
+                description: 'Punk and Oi compilation from British label, Punkboot Promotions! Featuring our song, "Over Again".',
+                
+            },
             {
                 name:'Stickers',
                 image:'images/sticker.jpg',
-                price: 6,
+                price: 1,
                 quanity: 6,
                 inStock:true,
                 description: 'Stickers, Patches, & Buttons O MY',
@@ -51,7 +60,7 @@ router.get('/seed', (req, res)=>{
             {
                 name:'Russ CD',
                 image:'images/russ_cd.jpeg',
-                price: 6,
+                price: 10,
                 quanity: 6,
                 inStock:true,
                 description: 'The full length debut CD from Billy Batts & The Made Men.',
@@ -59,11 +68,19 @@ router.get('/seed', (req, res)=>{
             {
                 name: 'Shovel T-shirt',
                 image: 'images/shirt.jpg',
-                price: 6,
+                price: 15,
                 quanity: 6,
                 inStock:true,
                 description: 'Black Classic T-shirt ',
-            }
+            },
+            {
+              name:'Spirit of DIY vol. 1 2019',
+              image:'images/spirit2.jpeg',
+              price: 10,
+              quanity: 6,
+              inStock:true,
+              description: 'Punk and Oi compilation from British label, Punkboot Promotions! Featuring our song, “Going Nowhere Fast”.',
+            },
         ], (err, data)=>{
             res.redirect('/merch');
         });
