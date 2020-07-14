@@ -8,3 +8,5 @@ Upcoming events is the landing page for the site where in the future the band's 
 
 The band was established in 2019, the members' are young & passionate, we hope as the band grows the site can develop.
  
+Username: Chad
+Password: password
