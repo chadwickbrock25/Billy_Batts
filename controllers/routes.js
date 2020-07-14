@@ -42,7 +42,7 @@ router.get('/seed', (req, res)=>{
         Merch.create([
               {
                 name:'Spirit of DIY vol. 2 2020',
-                image:'images/spirit1.jpeg',
+                image:'images/spirit2.jpeg',
                 price: 10,
                 quanity: 6,
                 inStock:true,
@@ -75,7 +75,7 @@ router.get('/seed', (req, res)=>{
             },
             {
               name:'Spirit of DIY vol. 1 2019',
-              image:'images/spirit2.jpeg',
+              image:'images/spirit1.jpeg',
               price: 10,
               quanity: 6,
               inStock:true,
@@ -131,7 +131,6 @@ router.delete('/:id', (req, res) => {
 
 //buy
 router.put('/:id/buy', (req, res) => {
-  // console.log(merch.name)
     Merch.findByIdAndUpdate(req.params.id, 
       {$inc: {quanity: -1}}, (err, oneItem) => {
           res.redirect(`/merch/${req.params.id}`)
